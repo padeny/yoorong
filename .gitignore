@@ -1,0 +1,10 @@
+*.py[cod]
+__pycache__/
+log/*
+*.log
+upload/*
+*.swp
+.DS_Store
+.env
+db.sqlite3
+tmp/*

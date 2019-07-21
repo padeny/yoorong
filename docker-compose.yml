@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  web:
+    build: .
+    image: yoorong:${VERSION}
+    # restart: always
+    container_name: web
+    volumes:
+      - .:${WORKDIR}
+    ports:
+      - 8083:${UWSGI_PORT}
+    environment:
+      - DJANGO_SETTINGS_MODULE
+      - DJANGO_SECRET_KEY
+      - UWSGI_PORT
+      - STATIC_SUIT
+      - WORKDIR
+
+  nginx:
+    image: nginx:stable
+    depends_on:
+        - web
+    container_name: nginx
+    environment:
+      - NGINX_HOST
+      - NGINX_PORT
+      - UWSGI_PORT
+      - WORKDIR
+    ports:
+      - 8000:${NGINX_PORT}
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./log/nginx:/var/log/nginx
+      - ./frontend:/var/www
+    command: /bin/bash -c "envsubst '$$UWSGI_PORT $$NGINX_PORT'< /etc/nginx/conf.d/yoorong.template > /etc/nginx/conf.d/yoorong.conf && nginx -g 'daemon off;'"

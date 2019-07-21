@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>产品详情</title>
+  <link rel="icon" type="image/x-icon" href="../static/images/icon.png">
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../static/css/public.css">
+</head>
+<body>
+  <div class="top">
+    <div class="logo"><a href=""></a></div>
+    <div class="nav">
+      <ul>
+        <li><a href="/index">公司首页</a></li>
+        <li><a href="/article">关于毓荣</a></li>
+        <li><a href="/list">产品中心</a></li>
+        <li><a href="/contact">联系我们</a></li>
+        <li><a href="/recruitment">招聘信息</a></li>
+        <li><a href="/form">在线留言</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="banner">
+  </div>
+  <div class="list_main" id="list_main">
+    <div class="list_left">
+      <p class="classify">全部分类</p>
+      <ul id="mainNav">
+      </ul>
+      <div class="list_leftb">
+        <span>产品搜索</span>
+        <div class="list_ipt search_container">
+          <input type="text" id="search">
+          <a class="button"><img src="../static/images/list_ico3.png" alt=""></a>
+          <div class="clear"></div>
+          <ul id="suggestion" class="suggestion"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="list_right">
+      <div class="list_rightt">
+        <p>产品详情</p>
+        <em>
+          <img src="../static/images/list_ico4.png" alt="">
+          <span>您当前的位置：<small><a href="/index">首页</a>>产品详情</small></span>
+        </em>
+      </div>
+      <div class="list_rightm" id="details">
+
+      </div>
+      <div class="list_rightb">
+      </div>
+    </div>
+  </div>
+  <div class="footbg">
+    <div class="foot">
+      <div class="code">
+        <img src="../static/images/code.jpg" alt="">
+      </div>
+      <div class="foot_m">
+        <p>单位地址：上海市青浦区清河湾路980号</p>
+        <p>Copyright @ 2017 yoorong.cc  沪ICP备17035212号　版权所有· 上海毓荣实业发展有限公司</p>
+      </div>
+      <div class="tel">
+        <p>毓荣服务热线：<span>周一至周日09：00-18:00</span></p>
+        <em><img src="../static/images/foot_ico.png" alt=""><small>021-59865223</small></em>
+      </div>
+    </div>
+  </div>  
+</body>
+</html>
+<script type="text/javascript" src="../static/js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="../static/js/photoMove.js"></script>
+<script type="text/javascript" src="../static/js/main.js"></script>
+<script type="text/javascript" src="../static/js/ajax.js"></script>
+<script type="text/javascript">
+  detailsCategory($('#mainNav'),$('#details'))
+  search($('#search'),$('#suggestion'),$('.search_container'),$('.button'))
+</script>

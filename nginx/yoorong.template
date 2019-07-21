@@ -1,0 +1,33 @@
+upstream yoorong {
+            server web:$UWSGI_PORT;
+    }
+
+server {
+        listen $NGINX_PORT default;
+        server_name  yoorong.cc;
+
+        location / {
+            root /var/www/templates/;
+            index index.html index.htm;
+            if (!-e $request_filename){
+                rewrite ^(.*)$ $1.html break;
+            }
+        }
+        location ~ ^/(static|static_suit) {
+            root /var/www/;
+            expires 30d;
+            }
+        location ~ ^/(api|upload|admin) {
+            proxy_pass http://yoorong;
+
+        }
+
+        gzip on;
+        gzip_min_length 1k;
+        gzip_buffers 4 16k;
+        gzip_comp_level 2;
+        gzip_types text/plain application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+        gzip_vary off;
+        gzip_disable "MSIE [1-6]\.";
+    }
+

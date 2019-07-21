@@ -1,0 +1,458 @@
+FORMAT:1A
+HOST: http://localhost:8000/api/v1
+
+# API 文档
+# Group Goods Group
+
+## Goods
+
+### 全部商品列表 [GET /goods/{?limit,offset,format}]
+
++ Parameters
+
+    + limit: `20` (number,optional) - 每一页的商品数量
+        + Default: `20`
+    + offset: `0` (number,optional) - 从第几个开始，
+        + Default: `0`
+    + format: `json` (string) - 获取的数据格式
+        + Members
+            + `json`
+            + `xml`
+            + `...`
+
++ Response 200 (application/json)
+
+    + Body
+        {
+            meta: {
+                limit: 20,
+                next: null,
+                offset: 0,
+                previous: null,
+                total_count: 5
+            },
+            objects: [
+                {
+                    goods_name: "Jimmy Brock",
+                    id: 1,
+                    resource_uri: "/api/v1/goods/1/"
+                },
+                {
+                    goods_name: "Chase Ryan Jr.",
+                    id: 2,
+                    resource_uri: "/api/v1/goods/2/"
+                },
+                {
+                    goods_name: "Leonard Martin",
+                    id: 3,
+                    resource_uri: "/api/v1/goods/3/"
+                },
+                {
+                    goods_name: "Susan Brown",
+                    id: 4,
+                    resource_uri: "/api/v1/goods/4/"
+                },
+                {
+                    goods_name: "Hannah Turner",
+                    id: 5,
+                    resource_uri: "/api/v1/goods/5/"
+                }
+                ...
+            ]
+        }
+
+
+### 部分商品列表 [GET /goods/set/id1;id2;id3/]
+
++ Parameters
+
+    + id1: `34` (number) 商品id
+    + id2: `23` (number)
+    + id3: `78` (number)
+
++ Response 200 (application/json)
+
+    + Body
+        {
+            objects: [
+                {
+                    goods_name: "Raymond Perry",
+                    id: 34,
+                    resource_uri: "/api/v1/goods/34/"
+                },
+                {
+                    goods_name: "David Jimenez",
+                    id: 23,
+                    resource_uri: "/api/v1/goods/23/"
+                },
+                {
+                    goods_name: "Benjamin Knight",
+                    id: 78,
+                    resource_uri: "/api/v1/goods/78/"
+                }
+            ]
+        }
+
+
+### 商品详情 [GET /goods/{id}/]
+
++ Parameters
+
+    + id: `4` (number) - 商品id
+
++ Response 200 (application/json)
+
+    + Body
+        {
+            goods_name: "Susan Brown",
+            id: 4,
+            resource_uri: "/api/v1/goods/4/"
+        }
+
+
+### 创建商品记录 [POST /goods/]
+创建一个商品记录
+
++ Parameters
+
+    + goods_name (string) - 商品名称
+
++ Response 201 (application/json)
+    + Body
+        {
+            "goods_name": "Full shsk",
+            "id": 1006,
+            "resource_uri": "/api/v1/goods/1006/"
+        }
+
+# Group Sale Group
+
+## Sale
+
+### 全部销售记录列表 [GET /sale/{?limit,offset,format,order_by}]
+
++ Parameters
+
+    + limit: `20` (number,optional) - 每一页的销售记录数量
+        + Default: `20`
+    + offset: `0` (number,optional) - 从第几个开始，
+        + Default: `0`
+    + format: `json` (string) - 获取的数据格式
+        + Members
+            + `json`
+            + `xml`
+            + `...`
+    + order_by: `traded-at` (string,optional) - 排序方式，这里按照时间排序，可以添加
+        各种filter字段，支持django中queryset部分的很多API
+        + Members
+            + `traded_at`
+            + `-traded_at`
+            + `price`
+            + `-price`
+            + `...`
+
++ Response 200 (application/json)
+
+    + Body
+        {
+            meta: {
+                    limit: 20,
+                    next: "/api/v1/sale/?format=json&limit=20&offset=20",
+                    offset: 0,
+                    previous: null,
+                    total_count: 6662263
+                },
+            objects: [
+                {
+                    goods: "/api/v1/goods/940/",
+                    id: 1,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/1/",
+                    traded_at: "2014-01-01T00:00:00"
+                },
+                {
+                    goods: "/api/v1/goods/805/",
+                    id: 2,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/2/",
+                    traded_at: "2014-01-01T00:00:04"
+                },
+                {
+                    goods: "/api/v1/goods/306/",
+                    id: 3,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/3/",
+                    traded_at: "2014-01-01T00:00:10"
+                },
+                {
+                    goods: "/api/v1/goods/137/",
+                    id: 4,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/4/",
+                    traded_at: "2014-01-01T00:00:12"
+                },
+                {
+                    goods: "/api/v1/goods/83/",
+                    id: 5,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/5/",
+                    traded_at: "2014-01-01T00:00:20"
+                },
+                {
+                    goods: "/api/v1/goods/517/",
+                    id: 6,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/6/",
+                    traded_at: "2014-01-01T00:00:29"
+                },
+                {
+                    goods: "/api/v1/goods/841/",
+                    id: 7,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/7/",
+                    traded_at: "2014-01-01T00:00:34"
+                },
+                {
+                    goods: "/api/v1/goods/554/",
+                    id: 8,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/8/",
+                    traded_at: "2014-01-01T00:00:41"
+                },
+                {
+                    goods: "/api/v1/goods/737/",
+                    id: 9,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/9/",
+                    traded_at: "2014-01-01T00:00:45"
+                },
+                {
+                    goods: "/api/v1/goods/640/",
+                    id: 10,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/10/",
+                    traded_at: "2014-01-01T00:00:54"
+                },
+                {
+                    goods: "/api/v1/goods/522/",
+                    id: 11,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/11/",
+                    traded_at: "2014-01-01T00:01:04"
+                },
+                {
+                    goods: "/api/v1/goods/676/",
+                    id: 12,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/12/",
+                    traded_at: "2014-01-01T00:01:10"
+                },
+                {
+                    goods: "/api/v1/goods/74/",
+                    id: 13,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/13/",
+                    traded_at: "2014-01-01T00:01:13"
+                },
+                {
+                    goods: "/api/v1/goods/693/",
+                    id: 14,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/14/",
+                    traded_at: "2014-01-01T00:01:22"
+                },
+                {
+                    goods: "/api/v1/goods/932/",
+                    id: 15,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/15/",
+                    traded_at: "2014-01-01T00:01:28"
+                },
+                {
+                    goods: "/api/v1/goods/560/",
+                    id: 16,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/16/",
+                    traded_at: "2014-01-01T00:01:36"
+                },
+                {
+                    goods: "/api/v1/goods/539/",
+                    id: 17,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/17/",
+                    traded_at: "2014-01-01T00:01:45"
+                },
+                {
+                    goods: "/api/v1/goods/843/",
+                    id: 18,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/18/",
+                    traded_at: "2014-01-01T00:01:52"
+                },
+                {
+                    goods: "/api/v1/goods/281/",
+                    id: 19,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/19/",
+                    traded_at: "2014-01-01T00:01:56"
+                },
+                {
+                    goods: "/api/v1/goods/510/",
+                    id: 20,
+                    price: 110,
+                    resource_uri: "/api/v1/sale/20/",
+                    traded_at: "2014-01-01T00:02:02"
+                },
+                ...
+            ]
+        }
+
+
+### 销售记录详情 [GET /sale/{id}/]
+
++ Parameters
+
+    + id: `4` (number) - 销售记录id
+
++ Response 200 (application/json)
+
+    + Body
+        {
+            goods: "/api/v1/goods/818/",
+            id: 5678,
+            price: 105,
+            resource_uri: "/api/v1/sale/5678/",
+            traded_at: "2014-01-01T08:43:18"
+        }
+
+
+# Group Sale-statistics Group
+
+## Sale-statistics
+
+### 销售统计数据1 [GET /sale-statistics/{?format,goods__id,group_by,start_time,end_time}]
+根据商品id，统计其在某段时期内各个时间段的销售数据，销量的峰值和低谷期
++ Parameters
+
+    + format: `json` (string) - 获取的数据格式
+        + Members
+            + `json`
+            + `xml`
+            + `...`
+    + goods__id: `123` (number) - 根据某个商品id进行数据统计
+    + start_time: `2014-08-12 00:00:00` - 统计的时间起点
+        + Default: 2014-01-01 00:00:00
+    + end_time: `2015-02-01 00:00:00` - 统计的时间终点
+        + Default: 2015-03-01 00:00:00
+    + group_by: `month` (number,optional) - 按年、月、日或时分组统计
+        + Members
+            + `hour`
+            + `day`
+            + `month`
+            + `year`
+
++ Response 200 (application/json)
+    {
+        data: [
+            {
+                end_time: "2015-02-01T00:00:00",
+                goods_id: 123,
+                group_by: "month",
+                id: 1,
+                peak: [
+                    {
+                        group: "201501",
+                        sale_num: 499
+                    }
+                ],
+                start_time: "2014-08-12T00:00:00",
+                statistics_info: [
+                    {
+                        group: "201408",
+                        sale_num: 303
+                    },
+                    {
+                        group: "201409",
+                        sale_num: 494
+                    },
+                    {
+                        group: "201410",
+                        sale_num: 465
+                    },
+                    {
+                        group: "201411",
+                        sale_num: 469
+                    },
+                    {
+                        group: "201412",
+                        sale_num: 473
+                    },
+                    {
+                        group: "201501",
+                        sale_num: 499
+                    }
+                ],
+                trough: [
+                    {
+                        group: "201408",
+                        sale_num: 303
+                    }
+                ]
+            }
+        ],
+        meta: {
+            limit: 20,
+            next: null,
+            offset: 0,
+            previous: null,
+            total_count: 1
+        }
+    }
+
+
+### 销售统计数据2 [GET /sale-statistics/{?format,goods__id,start_time,end_time}]
+根据商品id，统计其在某段时期内的销售情况，如最低、最大、平均价格
++ Parameters
+
+    + format: `json` (string) - 获取的数据格式
+        + Members
+            + `json`
+            + `xml`
+            + `...`
+    + goods__id: `123` (number) - 根据某个商品id进行数据统计
+    + start_time: `2014-08-12 00:00:00` - 统计的时间起点
+        + Default: 2014-01-01 00:00:00
+    + end_time: `2015-02-01 00:00:00` - 统计的时间终点
+        + Default: 2015-03-01 00:00:00
++ Response 200 (application/json)
+    {
+        data: [
+            {
+                end_time: "2015-02-01T00:00:00",
+                goods_id: 123,
+                group_by: "",
+                id: 1,
+                peak: [ ],
+                start_time: "2014-08-12T00:00:00",
+                statistics_info: [
+                    {
+                        price__avg: 124.7174
+                    },
+                    {
+                        price__max: 150
+                    },
+                    {
+                        price__min: 100
+                    }
+                ],
+                trough: [ ]
+            }
+        ],
+        meta: {
+            limit: 20,
+            next: null,
+            offset: 0,
+            previous: null,
+            total_count: 1
+        }
+    }
