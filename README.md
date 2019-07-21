@@ -14,6 +14,6 @@
 
 ## Update frontend
 
-    Replace `static` and `template` in the frontend directory and then,
+    Replace `static` and `templates` in the frontend directory and then,
 
     `./start.sh reload nginx`

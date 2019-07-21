@@ -28,7 +28,7 @@ services:
       - UWSGI_PORT
       - WORKDIR
     ports:
-      - 8000:${NGINX_PORT}
+      - ${NGINX_PORT}:${NGINX_PORT}
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - ./log/nginx:/var/log/nginx

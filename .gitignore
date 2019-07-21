@@ -8,3 +8,4 @@ upload/*
 .env
 db.sqlite3
 tmp/*
+nginx/*.conf
