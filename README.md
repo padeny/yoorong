@@ -1,6 +1,6 @@
 ## Setup
 
-1. `cp .env.sample .env` and set environment variablev
+1. `cp .env.sample .env` and set environment variable
 2. `source .env`
 3. `./start.sh build`
 4. migrate 'db.sqlite3' and 'upload/product_images'
