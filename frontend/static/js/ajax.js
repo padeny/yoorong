@@ -11,13 +11,13 @@
 
 
 
-  // 首页产品系列
+  // 首页产品系列 
   function indexCategory(obj){
       $.ajax({
           url: "/api/v1/category/",
           type: "GET",
-          // dataType: "jsonp",
-          success: function(data) {
+          // dataType: "jsonp", 
+          success: function(data) { 
               var str='';
               for (var i = 0; i < data.objects[0].category_list.length; i++) {
                  str+='<li><a href="/list?category='+data.objects[0].category_list[i]+'">'+data.objects[0].category_list[i]+'</a></li>'
@@ -25,15 +25,15 @@
               obj.append(str)
               // location.hash='#list_main';
           }
-       })
+       }) 
   }
   function detailsCategory(obj,obj1){
       $.ajax({
           url: "/api/v1/category/",
           type: "GET",
           async: false,
-          // dataType: "jsonp",
-          success: function(data) {
+          // dataType: "jsonp", 
+          success: function(data) { 
               var str='';
               for (var i = 0; i < data.objects[0].category_list.length; i++) {
                  str+='<li><a href="/list?category='+data.objects[0].category_list[i]+'">'+data.objects[0].category_list[i]+'</a></li>'
@@ -41,8 +41,8 @@
               obj.append(str);
               details(obj1)
           }
-       })
-
+       }) 
+      
   }
 
 
@@ -76,15 +76,15 @@
                     if (data.image==null) {
                         str1='<div class="detail-top"><div class="left"><div class="img">暂无图片</div></div><div class="right word"><p>产品名称：'+data.name+'</p><p>产品系列：'+data.category+'</p></div><div class="clear"></div></div><div class="detail-bottom"><h3>产品简介：</h3><p>'+data.introduction+'</p></div><div class="detail-bottom"><h3>产品详情</h3><ol>'+str+'</ol></div>';
                     } else {
-                        str1='<div class="detail-top"><div class="left"><img src="'+data.image+'"/></div><div class="right word"><p>产品名称：'+data.name+'</p><p>产品系列：'+data.category+'</p></div><div class="clear"></div></div><div class="detail-bottom"><h3>产品简介：</h3><ul>'+str2+'</ul></div><div class="detail-bottom"><h3>产品详情</h3><ol>'+str+'</ol></div>';
+                        str1='<div class="detail-top"><div class="left"><img src="http://106.15.194.162'+data.image+'"/></div><div class="right word"><p>产品名称：'+data.name+'</p><p>产品系列：'+data.category+'</p></div><div class="clear"></div></div><div class="detail-bottom"><h3>产品简介：</h3><ul>'+str2+'</ul></div><div class="detail-bottom"><h3>产品详情</h3><ol>'+str+'</ol></div>';
                     }
                     // str1='<div class="detail-top"><div><img src="http://106.15.194.162'+data.image+'"/></div><div class="word"><p>产品名称：'+data.name+'<p><p>产品系列：'+data.category+'</p></div></div><div class="detail-bottom"><h3>产品简介：</h3><p>'+data.introduction+'</p></div><div class="detail-bottom"><h3>产品详情</h3><ol>'+str+'</ol></div>';
 
                     obj.html(str1);
                     // location.hash='#list_main';
-                }  
-        })
-      }
+                }   
+        })       
+      }      
     }
 
   // 产品中心系列
@@ -92,9 +92,9 @@
       $.ajax({
           url: "/api/v1/category/",
           type: "GET",
-          // dataType: "jsonp",
+          // dataType: "jsonp", 
           // jsonpCallback: "receive",
-          success: function(data) {
+          success: function(data) { 
               var param=window.location.search;
               var id;
               if (param.search(/category=/)==-1) {
@@ -103,20 +103,20 @@
                 id=decodeURI(param.split('?')[1].split('=')[1]);    //decodeURI转码中文！！！！！！！！！！
                 // id=param.substring(param.search(/category=/)+9);
                 categoryShow(id);      //首页跳转
-              }
+              }   
               for (var i = 0; i < data.objects[0].category_list.length; i++) {
                  str3+='<li><a onclick=categoryShow("'+data.objects[0].category_list[i]+'")>'+data.objects[0].category_list[i]+'</a></li> '
               }
-              obj.html(str3);
+              obj.html(str3); 
               obj.find('a').first().css({'background':'#f55959 url(../static/images/list_ico2.png) 16px 13px no-repeat','border-radius':'20px','color':'#fff'});
               obj.find('a').click(function(){
                 obj.find('a').css({'background':'#fff url(../static/images/list_ico.png) 16px 13px no-repeat','color':'#404040'});
                 $(this).css({'background':'#f55959 url(../static/images/list_ico2.png) 16px 13px no-repeat','border-radius':'20px','color':'#fff'});
-              })
+              })        
             }
-       })
+       }) 
   }
-  function categoryShow(cate){
+  function categoryShow(cate){    
      setPage(cate);           //分页
      changePage(cate,0)       //分页内容
   }
@@ -132,9 +132,9 @@
           type: "GET",
           data: {"offset":num,"limit":9,"category":c},
           cache: false,
-          // dataType: "jsonp",
+          // dataType: "jsonp", 
           // jsonpCallback: "receive",
-          success: function(data) {
+          success: function(data) { 
               page=Math.ceil(data.meta.total_count/data.meta.limit);
               if (page>=1) {
                  lastpage=(page-1)*data.meta.limit; 
@@ -158,14 +158,14 @@
                   str2+='<li><a href="/productdetails?id='+data.objects[i].id+'#list_main"><div class="img">暂无图片</div><p>'+data.objects[i].name+'</p></a></li>'
 
                 }else{
-                  str2+='<li><a href="/productdetails?id='+data.objects[i].id+'#list_main"><img src="'+data.objects[i].image+'" alt="暂无图片" /><p>'+data.objects[i].name+'</p></a></li>'
+                  str2+='<li><a href="/productdetails?id='+data.objects[i].id+'#list_main"><img src="http://106.15.194.162'+data.objects[i].image+'" alt="暂无图片" /><p>'+data.objects[i].name+'</p></a></li>'
                 }
              }
              $('#mainShow').html(str2);
              str2='';
           }
-       })
-     }
+       }) 
+     }     
   }
 
 
@@ -190,7 +190,7 @@
                     str='<span id="sy"><a onclick=changePage(category,0)>首页</a></span><span><a onclick=changePage(category,prev)>上一页</a></span><span><a onclick=changePage(category,next)>下一页</a></span><span><a onclick=changePage(category,lastpage)>尾页</a></span><span>共'+page+'页</span><span>每页显示'+data.meta.limit+'条</span><span>转到第<select name="page" onchange=changePage(category,(this.value-1)*'+data.meta.limit+')>'+str1+'</select>页</span>';
                     $('#pagination').html(str);
                     str1='';
-                 }
+                 }                 
              }                
      })
   }
@@ -205,7 +205,7 @@
 
 
 // 产品搜索
-function search(obj1, obj2,obj3,obj4){
+function search(obj1, obj2,obj3,obj4){  
     $.ajax({
         url: "/api/v1/product_name/",
         type: "get",
@@ -224,7 +224,7 @@ function search(obj1, obj2,obj3,obj4){
                if (data.objects[0].name_list[i].product_name.search(obj1.val())!=-1&&obj1.val()!=" ") {
                   str+='<li>'+data.objects[0].name_list[i].product_name+'</li>';
                   arr.push(data.objects[0].name_list[i].id);
-               }
+               }   
               }
               obj2.html(str);
               if (obj2.children().length==0) {
@@ -234,7 +234,7 @@ function search(obj1, obj2,obj3,obj4){
               }
               str='';
               arr1=arr;
-              arr=[];
+              arr=[]; 
               obj2.children().click(function(){
                 obj1.val(this.innerHTML);
                 id=arr1[$(this).index()];        //取对应ID
@@ -245,7 +245,7 @@ function search(obj1, obj2,obj3,obj4){
           obj3.hover(function(){
             if (obj2.children().length>0) {
               obj2.show(1000)
-            }
+            }          
           },function(){
             obj2.hide(1000)
           })
@@ -267,7 +267,7 @@ function recruitment(obj){
   $.ajax({
      type: "get",    
      url: "/api/v1/position/", 
-  //    dataType: "jsonp",  
+  //    dataType: "jsonp",   
      success: function(data) {
       if (data.objects.length==0) {
         obj.html('暂无招聘信息')

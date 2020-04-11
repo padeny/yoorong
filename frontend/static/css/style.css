@@ -579,10 +579,8 @@
 {
     float: left;
     overflow: hidden;
-
     margin-top: 40px;
-    padding-left: 70px;
-
+    padding: 0 122px;
     background: url(../images/foot_img1.png)top left no-repeat;
 }
 .foot_m p
@@ -597,18 +595,20 @@
 .foot_m p span
 {
     margin-left: 30px;
-
     color: #fff;
+}
+.foot_m img{
+    width: 14px;
+    margin-right: 8px;
+    vertical-align: middle;
 }
 .tel
 {
-    float: left;
+    float: right;
     overflow: hidden;
-
     margin-top: 40px;
-    margin-left: 65px;
+/*    margin-left: 56px;*/
     padding-left: 57px;
-
     background: url(../images/foot_img1.png) top left no-repeat;
 }
 .tel p
